@@ -17,6 +17,16 @@
             android:name="com.car.gooz.Welcome"
             android:label="@string/app_name" >
         </activity>
+        
+         <activity
+            android:name="com.car.gooz.Register"
+            android:label="@string/app_name" >
+             </activity>
+        
+        <activity
+            android:name="com.car.gooz.LogIn"
+            android:label="@string/app_name" >
+        </activity>
             
         <activity
             android:name="com.car.gooz.Splash1"

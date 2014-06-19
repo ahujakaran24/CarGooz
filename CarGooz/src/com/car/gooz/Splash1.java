@@ -25,6 +25,7 @@ public class Splash1 extends Activity {
 	private Goose g; 
 	private Timer t;
 	boolean check=true;
+	private boolean isDestroyed = false; 	
 	
 	Context context;
 	Canvas canvas;
@@ -47,7 +48,8 @@ public class Splash1 extends Activity {
 
             @Override
             public void run() {
-            	startActivity(new Intent(getApplicationContext(), Welcome.class));
+            	finish();
+            	startActivity(new Intent(getApplicationContext(), LogIn.class));
             }
         }, 4000);
         

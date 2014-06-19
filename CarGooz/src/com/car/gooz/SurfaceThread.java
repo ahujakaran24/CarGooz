@@ -23,6 +23,8 @@ import android.view.WindowManager;
 import com.car.gooz.Car;
 import com.car.gooz.Goose;
 import com.car.gooz.Package;
+import com.car.gooz.BgSplash;
+import com.car.gooz.CGW;
 
 public class SurfaceThread extends Thread
 {
@@ -34,6 +36,8 @@ public class SurfaceThread extends Thread
 	private Car TheCar;
 	private Goose TheGoose;
 	private Package Pack;
+	private BgSplash bs;
+	private CGW cgw;
 	
 	
 	
@@ -43,10 +47,17 @@ public class SurfaceThread extends Thread
 
 	public SurfaceThread(SurfaceHolder surfaceHolder, SurfacePanel SurfacePanel, Context context)
 	{
-
 		
+
+		Bitmap BackSplashBitmap =(BitmapFactory.decodeResource(context.getResources(), R.drawable.road3));
+		bs = new BgSplash(BackSplashBitmap,0,570);
+		
+
+		Bitmap CGWBitmap = (BitmapFactory.decodeResource(context.getResources(), R.drawable.cgw));
+		cgw = new CGW(CGWBitmap,350,100);
+
 		Bitmap CarBitmap = (BitmapFactory.decodeResource(context.getResources(), R.drawable.car));
-		TheCar = new Car(CarBitmap,200,700);
+		TheCar = new Car(CarBitmap,200,970);
 		
 
 		Bitmap GooseBitmap = (BitmapFactory.decodeResource(context.getResources(), R.drawable.goose));
@@ -54,7 +65,7 @@ public class SurfaceThread extends Thread
 		
 		
 		Bitmap PackBitmap = (BitmapFactory.decodeResource(context.getResources(), R.drawable.pack));
-		Pack = new Package(PackBitmap,800,750);
+		Pack = new Package(PackBitmap,800,950);
 		
 		
 
@@ -88,15 +99,19 @@ public class SurfaceThread extends Thread
 					if(canvas!=null){
 					TheSurfacePanel.onDraw(canvas);
 					
+					canvas.drawBitmap(bs.GetBitmap(), bs.GetFrame(), bs.GetDestination(), null);
+					
 					canvas.drawBitmap(TheCar.GetBitmap(), TheCar.GetFrame(), TheCar.GetDestination(), null);
 					
 					canvas.drawBitmap(TheGoose.GetBitmap(), TheGoose.GetFrame(), TheGoose.GetDestination(), null);
+					
+					canvas.drawBitmap(cgw.GetBitmap(), cgw.GetFrame(), cgw.GetDestination(), null);
 					
 
 					
 					for(int i=0; i<10; i++)
 					{
-						TheGoose.y+=0.3;
+						TheGoose.y+=0.55;
 						TheGoose.x+=0.5;
 						TheGoose.Update();
 						if(TheGoose.x>=750)
